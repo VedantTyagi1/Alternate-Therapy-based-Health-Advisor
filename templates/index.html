@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dosha Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Ayurvedic Dosha Predictor</h1>
+
+    <form method="POST">
+
+        <h3>Select up to 3 Symptoms</h3>
+
+        <div class="symptom-box">
+
+            {% for symptom in symptoms %}
+
+                <label class="checkbox-label">
+
+                    <input type="checkbox"
+                           name="symptoms"
+                           value="{{ symptom }}">
+
+                    {{ symptom }}
+
+                </label>
+
+            {% endfor %}
+
+        </div>
+
+        <button type="submit">
+            Predict
+        </button>
+
+    </form>
+
+    {% if error %}
+
+        <p class="error">
+            {{ error }}
+        </p>
+
+    {% endif %}
+
+    {% if prediction %}
+
+        <h2>
+            Predicted Dosha: {{ prediction }}
+        </h2>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
